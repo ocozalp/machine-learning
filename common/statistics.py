@@ -3,7 +3,7 @@ Commonly used statistics methods
 """
 import numpy as np
 import math
-
+import common.linalg_wrapper as wrapper
 
 def sample_mean(data):
     return sum(data) / len(data)
@@ -43,7 +43,7 @@ def mahalanobis_distance(x, mean, covariance_matrix):
     dif_vector = np.asmatrix(dif_vector)
     dif_vector_t = np.asmatrix(dif_vector).getT()
 
-    return dif_vector_t.dot(covariance_matrix).dot(dif_vector)
+    return wrapper.dot_product_chain(dif_vector_t, covariance_matrix, dif_vector)
 
 
 def multivariate_normal(x, mean, covariance_matrix):
